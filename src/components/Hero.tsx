@@ -1,61 +1,116 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { event } from "../data/event";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 import { MehndiCorner, MehndiMotif } from "./MehndiMotif";
+import { Sparkles } from "./Sparkles";
 import "./Hero.css";
 
+const springSoft = { stiffness: 70, damping: 26, mass: 0.55, restDelta: 0.001 };
+
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const progress = useSpring(scrollYProgress, springSoft);
+  const y = useTransform(progress, [0, 1], ["0%", "26%"]);
+  const opacity = useTransform(progress, [0, 0.85], [1, 0.15]);
+  const scale = useTransform(progress, [0, 1], [1, 1.16]);
+
   return (
-    <header className="hero">
-      <div className="hero__media">
-        <ImagePlaceholder
-          src={event.images.hero}
-          alt="Mehndi celebration"
-          label="Hero photo coming soon"
-          className="hero__placeholder"
-        />
-      </div>
+    <header className="hero" ref={ref}>
+      <motion.div className="hero__media" style={{ y, scale }}>
+        <motion.div
+          initial={{ opacity: 0.55, scale: 1.14 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2.3, ease: [0.16, 1, 0.3, 1] }}
+          style={{ height: "100%" }}
+        >
+          <ImagePlaceholder
+            src={event.images.hero}
+            alt="Mehndi celebration"
+            label="Hero photo coming soon"
+            className="hero__placeholder"
+          />
+        </motion.div>
+      </motion.div>
 
-      <div className="hero__veil" aria-hidden="true" />
+      <motion.div className="hero__veil" aria-hidden="true" style={{ opacity }} />
+      <Sparkles count={50} />
 
-      <MehndiCorner className="hero__corner hero__corner--tl" />
-      <MehndiCorner className="hero__corner hero__corner--tr" />
-      <MehndiCorner className="hero__corner hero__corner--bl" />
-      <MehndiCorner className="hero__corner hero__corner--br" />
+      <motion.div
+        className="hero__corner hero__corner--tl"
+        initial={{ opacity: 0, scale: 0.6 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, delay: 1 }}
+      >
+        <MehndiCorner />
+      </motion.div>
+      <motion.div
+        className="hero__corner hero__corner--tr"
+        initial={{ opacity: 0, scale: 0.6 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, delay: 1.1 }}
+      >
+        <MehndiCorner />
+      </motion.div>
+      <motion.div
+        className="hero__corner hero__corner--bl"
+        initial={{ opacity: 0, scale: 0.6 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, delay: 1.2 }}
+      >
+        <MehndiCorner />
+      </motion.div>
+      <motion.div
+        className="hero__corner hero__corner--br"
+        initial={{ opacity: 0, scale: 0.6 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, delay: 1.3 }}
+      >
+        <MehndiCorner />
+      </motion.div>
 
-      <div className="hero__content">
+      <motion.div className="hero__content" style={{ opacity }}>
         <motion.div
           className="hero__motif-wrap"
-          initial={{ opacity: 0, scale: 0.85, rotate: -8 }}
+          initial={{ opacity: 0, scale: 0.7, rotate: -24 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.2, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}
         >
-          <MehndiMotif className="hero__motif" />
+          <motion.div
+            animate={{ rotate: [0, 8, -6, 0], scale: [1, 1.06, 1] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <MehndiMotif className="hero__motif" />
+          </motion.div>
         </motion.div>
 
         <motion.p
-          className="hero__event"
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="hero__event shimmer-text shimmer-text--light"
+          initial={{ opacity: 0, y: 18, letterSpacing: "0.5em" }}
+          animate={{ opacity: 1, y: 0, letterSpacing: "0.32em" }}
+          transition={{ duration: 0.95, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           {event.label} Night
         </motion.p>
 
         <motion.h1
           className="hero__name"
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.95, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1.15, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
         >
           {event.host}
         </motion.h1>
 
         <motion.p
           className="hero__tagline"
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.85, delay: 1.65, ease: [0.16, 1, 0.3, 1] }}
         >
           {event.tagline}
         </motion.p>
@@ -63,13 +118,15 @@ export function Hero() {
         <motion.a
           href="#invite"
           className="hero__cta"
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.85, delay: 1.85, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ y: -4, letterSpacing: "0.28em" }}
+          whileTap={{ scale: 0.97 }}
         >
           Open invite
         </motion.a>
-      </div>
+      </motion.div>
     </header>
   );
 }

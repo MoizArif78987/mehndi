@@ -66,6 +66,38 @@ body::before {
   transform-origin: center;
 }
 
+.shimmer-text {
+  background: linear-gradient(110deg, var(--foliage) 18%, var(--marigold) 46%, var(--foliage) 70%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-sweep 3.6s linear infinite;
+}
+
+.shimmer-text--light {
+  background: linear-gradient(110deg, #f3f5ee 15%, #f0b84a 48%, #f3f5ee 72%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: -100% center;
+  }
+}
+
+.invite,
+.closing {
+  position: relative;
+  overflow: hidden;
+}
+
 @media (min-width: 768px) {
   .section-label {
     font-size: 0.74rem;

@@ -6,7 +6,5 @@ export const event = {
   tagline: "You're invited to celebrate",
   images: {
     hero: "/images/hero.jpg",
-    portrait: "/images/portrait.jpg",
-    mehndi: "/images/mehndi.jpg",
   },
 } as const;
