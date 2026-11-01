@@ -1,7 +1,6 @@
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { event } from "../data/event";
-import { ImagePlaceholder } from "./ImagePlaceholder";
 import { MehndiCorner, MehndiMotif } from "./MehndiMotif";
 import { Sparkles } from "./Sparkles";
 import "./Hero.css";
@@ -15,28 +14,10 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
   const progress = useSpring(scrollYProgress, springSoft);
-  const y = useTransform(progress, [0, 1], ["0%", "26%"]);
   const opacity = useTransform(progress, [0, 0.85], [1, 0.15]);
-  const scale = useTransform(progress, [0, 1], [1, 1.16]);
 
   return (
     <header className="hero" ref={ref}>
-      <motion.div className="hero__media" style={{ y, scale }}>
-        <motion.div
-          initial={{ opacity: 0.55, scale: 1.14 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2.3, ease: [0.16, 1, 0.3, 1] }}
-          style={{ height: "100%" }}
-        >
-          <ImagePlaceholder
-            src={event.images.hero}
-            alt="Mehndi celebration"
-            label="Hero photo coming soon"
-            className="hero__placeholder"
-          />
-        </motion.div>
-      </motion.div>
-
       <motion.div className="hero__veil" aria-hidden="true" style={{ opacity }} />
       <Sparkles count={50} />
 

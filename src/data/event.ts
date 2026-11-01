@@ -6,7 +6,4 @@ export const event = {
   closingNote: "We would be honoured by your presence",
   dateDisplay: "January 1, 2027",
   day: "Friday",
-  images: {
-    hero: "/images/hero.jpg",
-  },
 } as const;

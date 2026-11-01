@@ -9,18 +9,9 @@
   color: var(--sage);
   width: 100%;
   text-align: center;
-}
-
-.hero__media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero__placeholder {
-  height: 100%;
-  min-height: 100svh;
-  min-height: 100dvh;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(224, 155, 27, 0.2), transparent 52%),
+    linear-gradient(165deg, #2f5740 0%, #1f3d2a 48%, #122418 100%);
 }
 
 .hero__veil {
