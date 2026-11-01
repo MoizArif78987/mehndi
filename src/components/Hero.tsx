@@ -97,30 +97,39 @@ export function Hero() {
           {event.label} Night
         </motion.p>
 
+        <motion.p
+          className="hero__hosts"
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 1.35, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {event.hosts}
+        </motion.p>
+
+        <motion.p
+          className="hero__invite"
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {event.inviteLine}
+        </motion.p>
+
         <motion.h1
           className="hero__name"
           initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 1.15, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.15, delay: 1.65, ease: [0.16, 1, 0.3, 1] }}
         >
-          {event.host}
+          {event.son}
         </motion.h1>
-
-        <motion.p
-          className="hero__tagline"
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, delay: 1.65, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {event.tagline}
-        </motion.p>
 
         <motion.a
           href="#invite"
           className="hero__cta"
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, delay: 1.85, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.85, delay: 2.05, ease: [0.16, 1, 0.3, 1] }}
           whileHover={{ y: -4, letterSpacing: "0.28em" }}
           whileTap={{ scale: 0.97 }}
         >

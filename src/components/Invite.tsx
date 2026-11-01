@@ -26,10 +26,7 @@ export function Invite() {
           <h2 id="invite-heading" className="section-title shimmer-text">
             A night of colour & joy
           </h2>
-          <p className="section-copy">
-            Join {event.host} for an evening of henna, music, and festivity as we welcome the
-            wedding celebrations.
-          </p>
+          <p className="section-copy">An evening of henna, music, and festivity.</p>
         </motion.div>
 
         <motion.div

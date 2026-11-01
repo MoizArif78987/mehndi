@@ -40,8 +40,18 @@ export function Closing() {
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          {event.host}
+          {event.hosts}
         </motion.h2>
+
+        <motion.p
+          className="closing__note"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.75, delay: 0.3 }}
+        >
+          {event.closingNote}
+        </motion.p>
 
         <motion.p
           className="closing__date"

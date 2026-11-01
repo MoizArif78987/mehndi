@@ -1,9 +1,11 @@
 export const event = {
   label: "Mehndi",
-  host: "Abdul Moiz Arif",
+  hosts: "Mr & Mrs Arif Saleem",
+  son: "Abdul Moiz Arif",
+  inviteLine: "invite you to celebrate",
+  closingNote: "We would be honoured by your presence",
   dateDisplay: "January 1, 2027",
   day: "Friday",
-  tagline: "You're invited to celebrate",
   images: {
     hero: "/images/hero.jpg",
   },
